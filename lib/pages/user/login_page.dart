@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_01/pages/post/home_page.dart';
+import 'package:flutter_01/utils/validator_util.dart';
 import 'package:get/route_manager.dart';
 
 import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_form_field.dart';
 
 class LoginPage extends StatelessWidget {
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +34,24 @@ class LoginPage extends StatelessWidget {
 
   Widget _loginForm() {
     return Form(
+        key: _formKey,
         child: Column(
           children: [
-            CustomTextFormField(hint: "Username",),
-            CustomTextFormField(hint: "Password",),
+            CustomTextFormField(
+              hint: "Username",
+              funValidator: validateUsername(),
+            ),
+            CustomTextFormField(
+              hint: "Password",
+              funValidator: validatePassword(),
+            ),
             CustomElevatedButton(
               text: "로그인",
-              pageRoute: () => Get.to(HomePage()),
+              funPageRoute: () {
+                if(_formKey.currentState!.validate()) {
+                  Get.to(HomePage());
+                }
+              },
             )
           ],
         )

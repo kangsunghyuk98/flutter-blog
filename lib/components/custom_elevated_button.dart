@@ -5,9 +5,9 @@ import 'package:get/route_manager.dart';
 class CustomElevatedButton extends StatelessWidget {
 
   final String text;
-  final pageRoute;
+  final funPageRoute;
 
-  const CustomElevatedButton({required this.text, required this.pageRoute});
+  const CustomElevatedButton({required this.text, required this.funPageRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           )
       ),
-      onPressed: pageRoute,
+      onPressed: funPageRoute,
       child: Text("$text"),
     );
   }
