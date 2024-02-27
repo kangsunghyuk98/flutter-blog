@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_01/pages/post/detail_page.dart';
 import 'package:flutter_01/size.dart';
+import 'package:get/route_manager.dart';
 
 class HomePage extends StatelessWidget {
 
@@ -8,7 +10,21 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: _navigation(context),
       appBar: AppBar(),
-      body: Text("Home Page"),
+      body: ListView.separated(
+        itemCount: 20,
+          itemBuilder: (context, index) { // index는 seq
+            return ListTile(
+              onTap: () {
+                Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
+              },
+              title: Text("제목1"),
+              leading: Text("1"),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+      ),
     );
   }
 
@@ -23,6 +39,14 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              TextButton(
+                  onPressed: (){},
+                  child: Text(
+                    "글쓰기",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
+                  )
+              ),
+              Divider(),
               TextButton(
                   onPressed: (){},
                   child: Text(
