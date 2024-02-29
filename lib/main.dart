@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_01/pages/post/home_page.dart';
-import 'package:flutter_01/pages/user/join_page.dart';
-import 'package:flutter_01/pages/user/login_page.dart';
+import 'package:flutter_01/view/pages/post/home_page.dart';
+import 'package:flutter_01/view/pages/user/login_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }

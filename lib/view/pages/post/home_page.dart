@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_01/pages/post/detail_page.dart';
-import 'package:flutter_01/pages/post/write_page.dart';
-import 'package:flutter_01/pages/user/login_page.dart';
-import 'package:flutter_01/pages/user/user_info.dart';
 import 'package:flutter_01/size.dart';
+import 'package:flutter_01/view/pages/post/write_page.dart';
 import 'package:get/route_manager.dart';
+
+import '../user/login_page.dart';
+import '../user/user_info.dart';
+import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
 

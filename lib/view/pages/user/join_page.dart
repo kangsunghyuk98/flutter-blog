@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_01/pages/user/login_page.dart';
 import 'package:flutter_01/utils/validator_util.dart';
 import 'package:get/route_manager.dart';
 import 'package:validators/validators.dart';
 
 import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_form_field.dart';
+import 'login_page.dart';
 
 class JoinPage extends StatelessWidget {
 
