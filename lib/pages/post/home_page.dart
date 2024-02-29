@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_01/pages/post/detail_page.dart';
+import 'package:flutter_01/pages/post/write_page.dart';
+import 'package:flutter_01/pages/user/login_page.dart';
+import 'package:flutter_01/pages/user/user_info.dart';
 import 'package:flutter_01/size.dart';
 import 'package:get/route_manager.dart';
 
@@ -35,34 +38,37 @@ class HomePage extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Get.to(WritePage());
+                  },
                   child: Text(
                     "글쓰기",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
                   )
               ),
-              Divider(),
               TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Get.to(UserInfo());
+                  },
                   child: Text(
                     "회원 상세",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
                   )
               ),
-              Divider(),
               TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Get.to(LoginPage());
+                  },
                   child: Text(
                     "로그 아웃",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black54),
                   )
               ),
-              Divider(),
             ],
           ),
         ),

@@ -30,12 +30,37 @@ Function validatePassword () {
   };
 }
 
+
 Function validateEmail () {
   return (String? value) {
     if(value!.isEmpty) {
       return "빈값을 입력할 수 없습니다.";
     } else if (!isEmail(value)) {
       return "이메일 형식에 맞지 않습니다.";
+    } else {
+      return null;
+    }
+  };
+}
+
+Function validateTitle () {
+  return (String? value) {
+    if(value!.isEmpty) {
+      return "빈값을 입력할 수 없습니다.";
+    } else if (value.length > 30) {
+      return "길이를 초과하였습니다.";
+    } else {
+      return null;
+    }
+  };
+}
+
+Function validateContent () {
+  return (String? value) {
+    if(value!.isEmpty) {
+      return "빈값을 입력할 수 없습니다.";
+    } else if (value.length > 500) {
+      return "길이를 초과하였습니다.";
     } else {
       return null;
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_01/pages/post/home_page.dart';
+import 'package:flutter_01/pages/user/join_page.dart';
 import 'package:flutter_01/utils/validator_util.dart';
 import 'package:get/route_manager.dart';
 
@@ -52,6 +53,12 @@ class LoginPage extends StatelessWidget {
                   Get.to(HomePage());
                 }
               },
+            ),
+            TextButton(
+                onPressed: (){
+                  Get.to(JoinPage());
+                },
+                child: Text("아직 회원가입이 안되어있나요?")
             )
           ],
         )
