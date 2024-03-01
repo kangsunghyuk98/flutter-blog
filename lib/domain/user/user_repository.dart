@@ -9,7 +9,5 @@ class UserRepository {
   Future<void> login (String username, String password) async{
     LoginReqDto loginReqDto = LoginReqDto(username, password);
     Response response = await _userProvider.login(loginReqDto.toJson());
-
-    print(response.body);
   }
 }

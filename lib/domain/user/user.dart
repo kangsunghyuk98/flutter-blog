@@ -2,7 +2,7 @@
 import 'package:intl/intl.dart';
 
 class User {
-  final int? nMemSeq;
+  final int? nmemSeq;
   final String? strMemIdno;
   final String? strMemBirth;
   final String? strMemGender;
@@ -14,7 +14,7 @@ class User {
   final String? message;
 
   User({
-    this.nMemSeq,
+    this.nmemSeq,
     this.strMemIdno,
     this.strMemBirth,
     this.strMemGender,
@@ -26,9 +26,9 @@ class User {
   });
 
   User.fromJson(Map<String, dynamic> json)
-      : nMemSeq = json["id"],
-        strMemIdno = json["title"],
-        strMemBirth = json["content"],
+      : nmemSeq = json["nmemSeq"],
+        strMemIdno = json["strMemIdno"],
+        strMemBirth = json["strMemBirth"],
         strMemGender = json["strMemGender"],
         strMemTier = json["strMemTier"],
         strMemClub = json["strMemClub"],
