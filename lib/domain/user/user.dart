@@ -2,37 +2,37 @@
 import 'package:intl/intl.dart';
 
 class User {
-  final int? nmemSeq;
-  final String? strMemIdno;
-  final String? strMemBirth;
-  final String? strMemGender;
-  final String? strMemTier;
-  final String? strMemClub;
-  final String? strMemCrew;
+  final int? memSeq;
+  final String? memIdno;
+  final String? memBirth;
+  final String? memGender;
+  final String? memTier;
+  final String? memClub;
+  final String? memCrew;
 
   final String? code;
   final String? message;
 
   User({
-    this.nmemSeq,
-    this.strMemIdno,
-    this.strMemBirth,
-    this.strMemGender,
-    this.strMemTier,
-    this.strMemClub,
-    this.strMemCrew,
+    this.memSeq,
+    this.memIdno,
+    this.memBirth,
+    this.memGender,
+    this.memTier,
+    this.memClub,
+    this.memCrew,
     this.code,
     this.message
   });
 
   User.fromJson(Map<String, dynamic> json)
-      : nmemSeq = json["nmemSeq"],
-        strMemIdno = json["strMemIdno"],
-        strMemBirth = json["strMemBirth"],
-        strMemGender = json["strMemGender"],
-        strMemTier = json["strMemTier"],
-        strMemClub = json["strMemClub"],
-        strMemCrew = json["strMemCrew"],
-        code = json["code"],
-        message = json["message"];
+      : memSeq =    json["memSeq"],
+        memIdno =   json["memIdno"],
+        memBirth =  json["memBirth"],
+        memGender = json["memGender"],
+        memTier =   json["memTier"],
+        memClub =   json["memClub"],
+        memCrew =   json["memCrew"],
+        code =      json["code"],
+        message =   json["message"];
 }

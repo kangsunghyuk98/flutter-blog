@@ -1,11 +1,11 @@
 class LoginReqDto {
-  final String? strMemIdno;
-  final String? strRawPw;
+  final String? memIdno;
+  final String? memPw;
 
-  LoginReqDto(this.strMemIdno, this.strRawPw);
+  LoginReqDto(this.memIdno, this.memPw);
 
   Map<String, dynamic> toJson() => {
-    "strMemIdno" : strMemIdno,
-    "strRawPw" : strRawPw,
+    "memIdno" : memIdno,
+    "memPw" : memPw,
   };
 }
