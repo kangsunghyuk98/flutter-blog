@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_01/controller/post_controller.dart';
+import 'package:flutter_01/controller/user_controller.dart';
 import 'package:flutter_01/size.dart';
 import 'package:flutter_01/view/pages/post/write_page.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 import '../user/login_page.dart';
@@ -11,9 +14,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // put은 없으면 만들고, 있으면 찾기 / 이미 로그인 시 컨트롤러 주입 받았으니 find로 찾음
+    UserController u = Get.find();
+    PostController p = Get.put(PostController());
+    p.findAll();
+
     return Scaffold(
       drawer: _navigation(context),
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Obx(() => Text("${u.isLogin}")), // isLogin의 값이 바뀔때마다 자동으로 갱신시켜줌
+      ),
       body: ListView.separated(
         itemCount: 20,
           itemBuilder: (context, index) { // index는 seq
@@ -33,6 +44,9 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _navigation(BuildContext context) {
+
+    UserController u = Get.find();
+
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
@@ -63,7 +77,8 @@ class HomePage extends StatelessWidget {
               ),
               TextButton(
                   onPressed: (){
-                    Get.to(LoginPage());
+                    u.logout();
+                    Get.to(() => LoginPage());
                   },
                   child: Text(
                     "로그 아웃",
