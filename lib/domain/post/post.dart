@@ -3,20 +3,22 @@ import 'package:flutter_01/domain/user/user.dart';
 import 'package:intl/intl.dart';
 
 class Post {
-  final int? id;
-  final String? title;
-  final String? content;
-  final User? user;
-  final DateTime? created;
-  final DateTime? updated;
+  final int? bbsSeq;
+  final String? bbsTitle;
+  final String? bbsContents;
+  final String? bbsWriter;
+  final int? bbsWriterCd;
+  final String? bbsRegDt;
+  final String? bbsRegHms;
 
-  Post({this.id, this.title, this.content, this.user, this.created, this.updated});
+  Post({this.bbsSeq, this.bbsTitle, this.bbsContents, this.bbsWriter, this.bbsWriterCd, this.bbsRegDt, this.bbsRegHms});
 
   Post.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        title = json["title"],
-        content = json["content"],
-        user = User.fromJson(json["user"]),
-        created = DateFormat("yyyy-mm-dd").parse(json["created"]),
-        updated = DateFormat("yyyy-mm-dd").parse(json["updated"]);
+      : bbsSeq = json["bbsSeq"],
+        bbsTitle = json["bbsTitle"],
+        bbsContents = json["bbsContents"],
+        bbsWriter = json["bbsWriter"],
+        bbsWriterCd = json["bbsWriterCd"],
+        bbsRegDt = json["bbsRegDt"],
+        bbsRegHms = json["bbsRegHms"];
 }

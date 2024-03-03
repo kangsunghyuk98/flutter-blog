@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_01/controller/post_controller.dart';
 import 'package:flutter_01/controller/user_controller.dart';
+import 'package:flutter_01/domain/post/post.dart';
 import 'package:flutter_01/size.dart';
 import 'package:flutter_01/view/pages/post/write_page.dart';
 import 'package:get/get.dart';
@@ -18,28 +19,27 @@ class HomePage extends StatelessWidget {
     // put은 없으면 만들고, 있으면 찾기 / 이미 로그인 시 컨트롤러 주입 받았으니 find로 찾음
     UserController u = Get.find();
     PostController p = Get.put(PostController());
-    p.findAll();
 
     return Scaffold(
       drawer: _navigation(context),
       appBar: AppBar(
         title: Obx(() => Text("${u.isLogin}")), // isLogin의 값이 바뀔때마다 자동으로 갱신시켜줌
       ),
-      body: ListView.separated(
-        itemCount: 20,
-          itemBuilder: (context, index) { // index는 seq
-            return ListTile(
-              onTap: () {
-                Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
-              },
-              title: Text("제목1"),
-              leading: Text("1"),
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Divider();
-          },
-      ),
+      body: Obx(() => ListView.separated(
+        itemCount: p.posts.length,
+        itemBuilder: (context, index) { // index는 seq
+          return ListTile(
+            onTap: () {
+              Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
+            },
+            title: Text("${p.posts[index].bbsTitle}"),
+            leading: Text("${p.posts[index].bbsSeq}"),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return Divider();
+        },
+      )),
     );
   }
 
