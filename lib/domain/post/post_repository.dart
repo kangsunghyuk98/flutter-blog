@@ -26,4 +26,17 @@ class PostRepository {
       return <Post>[];
     }
   }
+
+  Future<Post> findById (int? id) async{
+    Response response = await _postProvider.findById(id);
+    dynamic body = response.body;
+    CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
+
+    if(cmmnResDto.code == "000") {
+      Post post = Post.fromJson(cmmnResDto.data);
+      return post;
+    } else{
+      return Post();
+    }
+  }
 }

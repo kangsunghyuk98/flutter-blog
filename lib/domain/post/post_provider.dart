@@ -14,4 +14,13 @@ class PostProvider extends GetConnect {
       "Authorization" : token ?? ""
     });
   }
+
+  Future<Response> findById(int? id) async{
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? token = preferences.getString("jwtToken");
+
+    return get("$host/post/$id", headers: {
+      "Authorization" : token ?? ""
+    });
+  }
 }

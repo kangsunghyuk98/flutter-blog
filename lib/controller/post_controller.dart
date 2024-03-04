@@ -7,7 +7,7 @@ class PostController extends GetxController{
 
   final PostRepository _postRepository = PostRepository();
   final posts = <Post>[].obs;
-
+  final post = Post().obs;
 
   @override
   void onInit() { // 컨트롤러 초기화 시 실행되는 함수
@@ -18,5 +18,10 @@ class PostController extends GetxController{
   Future<void> findAll() async{
     List<Post> resPosts = await _postRepository.findAll();
     this.posts.value = resPosts;
+  }
+
+  Future<void> findById(int? id) async{
+    Post post = await _postRepository.findById(id);
+    this.post.value = post;
   }
 }

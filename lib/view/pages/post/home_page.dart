@@ -30,7 +30,8 @@ class HomePage extends StatelessWidget {
         itemBuilder: (context, index) { // index는 seq
           return ListTile(
             onTap: () {
-              Get.to(DetailPage(index), arguments: "arguments 속성 테스트");
+              p.findById(p.posts[index].bbsSeq);
+              Get.to(DetailPage(p.posts[index].bbsSeq), arguments: "arguments 속성 테스트");
             },
             title: Text("${p.posts[index].bbsTitle}"),
             leading: Text("${p.posts[index].bbsSeq}"),

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_01/controller/post_controller.dart';
+import 'package:flutter_01/controller/user_controller.dart';
 import 'package:flutter_01/view/pages/post/update_page.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
 
 import 'home_page.dart';
 
 class DetailPage extends StatelessWidget {
 
-  final int id;
+  final int? id;
 
   const DetailPage(this.id);
 
@@ -15,15 +18,19 @@ class DetailPage extends StatelessWidget {
 
     // dynamic type
     // String data = Get.arguments;
+    UserController u = Get.find();
+    PostController p = Get.find();
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text("$id, isLogin : ${u.isLogin}"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: Obx(() => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("글제목", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),),
+            Text("${p.post.value.bbsTitle}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),),
             Divider(),
             Row(
               children: [
@@ -44,11 +51,11 @@ class DetailPage extends StatelessWidget {
             ),
             Expanded(
               child: SingleChildScrollView( // 상세에서 글이 엄청나게 길어질 수도 있기 때문에
-                  child: Text("글내용"*500)
+                  child: Text("${p.post.value.bbsContents}")
               ),
             )
           ],
-        ),
+        )),
       )
     );
   }
