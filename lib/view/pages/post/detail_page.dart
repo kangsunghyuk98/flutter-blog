@@ -32,7 +32,7 @@ class DetailPage extends StatelessWidget {
           children: [
             Text("${p.post.value.bbsTitle}", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),),
             Divider(),
-            Row(
+            u.principal.value.memSeq == p.post.value.bbsWriterCd ? Row(
               children: [
                 ElevatedButton(
                     onPressed: (){
@@ -48,7 +48,7 @@ class DetailPage extends StatelessWidget {
                     child: Text("수정")
                 ),
               ],
-            ),
+            ) : SizedBox(),
             Expanded(
               child: SingleChildScrollView( // 상세에서 글이 엄청나게 길어질 수도 있기 때문에
                   child: Text("${p.post.value.bbsContents}")

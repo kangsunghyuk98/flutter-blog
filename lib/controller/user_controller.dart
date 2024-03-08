@@ -1,4 +1,5 @@
 
+import 'package:flutter_01/domain/user/user.dart';
 import 'package:flutter_01/domain/user/user_repository.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,17 +8,18 @@ class UserController extends GetxController {
 
   final UserRepository _userRepository = UserRepository();
   final RxBool isLogin = false.obs; // UI가 관찰 가능한 변수
+  final principal = User().obs;
 
-  Future<String> login (String username, String password) async{
-    String token = await _userRepository.login(username, password);
+  Future<int> login (String username, String password) async{
+    User principal = await _userRepository.login(username, password);
 
-    if(token != "-1") {
+    if(principal.memSeq != null) {
       isLogin.value = true;
-      final SharedPreferences preferences = await SharedPreferences.getInstance();
-      preferences.setString("jwtToken", token);
-      print(preferences.getString("jwtToken"));
+      this.principal.value = principal;
+      return 1;
+    } else {
+      return -1;
     }
-    return token;
   }
 
   Future<void> logout() async{

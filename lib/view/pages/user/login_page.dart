@@ -60,8 +60,8 @@ class LoginPage extends StatelessWidget {
               funPageRoute: () async{
                 if(_formKey.currentState!.validate()) {
                   // Get.to(HomePage());
-                  String token = await u.login(_username.text.trim(), _password.text.trim());
-                  if(token != "-1") {
+                  int res = await u.login(_username.text.trim(), _password.text.trim());
+                  if(res == 1) {
                     print("토큰을 정상적으로 받음");
                     Get.to(() => HomePage());
                   } else {
