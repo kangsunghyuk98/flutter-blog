@@ -35,8 +35,9 @@ class DetailPage extends StatelessWidget {
             u.principal.value.memSeq == p.post.value.bbsWriterCd ? Row(
               children: [
                 ElevatedButton(
-                    onPressed: (){
-                      Get.off(HomePage()); // 상태관리로 갱신 시킬 수 있음.
+                    onPressed: () async{
+                      await p.deleteById(p.post.value.bbsSeq);
+                      Get.off(() => HomePage()); // 상태관리로 갱신 시킬 수 있음.
                     },
                     child: Text("삭제")
                 ),

@@ -39,4 +39,13 @@ class PostRepository {
       return Post();
     }
   }
+
+  Future<String?> deleteById (int? id) async{
+    Response response = await _postProvider.deleteById(id);
+    dynamic body = response.body;
+    CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
+
+    return cmmnResDto.code;
+  }
+
 }
