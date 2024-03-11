@@ -32,4 +32,13 @@ class PostProvider extends GetConnect {
       "Authorization" : token ?? ""
     });
   }
+
+  Future<Response> updateById(int? id, Map data) async{
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? token = preferences.getString("jwtToken");
+
+    return put("$host/post/$id", data ,headers: {
+      "Authorization" : token ?? ""
+    });
+  }
 }

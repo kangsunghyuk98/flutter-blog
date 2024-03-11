@@ -1,5 +1,6 @@
 import 'package:flutter_01/controller/dto/CmmnResDto.dart';
 import 'package:flutter_01/controller/dto/LoginRequestDto.dart';
+import 'package:flutter_01/controller/dto/UpdateRequestDto.dart';
 import 'package:flutter_01/domain/post/post.dart';
 import 'package:flutter_01/domain/post/post_provider.dart';
 import 'package:flutter_01/domain/user/user_provider.dart';
@@ -46,6 +47,19 @@ class PostRepository {
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
 
     return cmmnResDto.code;
+  }
+
+  Future<void> updateById (int? id, String title, String content) async{
+    UpdateReqDto updateReqDto = UpdateReqDto(title, content);
+    Response response = await _postProvider.updateById(id, updateReqDto.toJson());
+    dynamic body = response.body;
+    CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
+
+    if(cmmnResDto.code == "000") {
+      print("수정성공");
+    } else {
+      print("수정실패");
+    }
   }
 
 }

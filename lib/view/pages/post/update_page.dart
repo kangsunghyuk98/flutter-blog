@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_01/controller/post_controller.dart';
 import 'package:flutter_01/utils/validator_util.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 import '../../components/custom_elevated_button.dart';
 import '../../components/custom_text_form_field.dart';
@@ -11,8 +12,17 @@ class UpdatePage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
+  final _title = TextEditingController();
+  final _contents = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+
+    final PostController p = Get.find();
+
+    _title.text = "${p.post.value.bbsTitle}";
+    _contents.text = "${p.post.value.bbsContents}";
+
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -22,19 +32,20 @@ class UpdatePage extends StatelessWidget {
             child: ListView(
               children: [
                 CustomTextFormField(
+                  controller: _title,
                   hint: "Title",
                   funValidator: validateTitle(),
-                  value: "제목1"*2,
                 ),
                 CustomTextarea(
+                  controller: _contents,
                   hint: "Content",
                   funValidator: validateContent(),
-                  value: "내용1"*20,
                 ),
                 CustomElevatedButton(
                   text: "수정하기",
-                  funPageRoute: () {
+                  funPageRoute: () async {
                     if(_formKey.currentState!.validate()) {
+                      await p.updateById(p.post.value.bbsSeq, _title.text, _contents.text);
                       Get.back(); // 상태관리 라이브러리 Obs 사용할거임
                     }
                   },
