@@ -36,6 +36,8 @@ class PostController extends GetxController{
 
   Future<void> updateById(int? id, String title, String content) async{
     await _postRepository.updateById(id, title, content);
+    findById(id);
+    findAll();
   }
 
 }
