@@ -55,11 +55,11 @@ class PostRepository {
     dynamic body = response.body;
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
 
-    if(cmmnResDto.code == "000") {
-      print("수정성공");
-    } else {
-      print("수정실패");
-    }
+    // if(cmmnResDto.code == "000") {
+    //   print("수정성공");
+    // } else {
+    //   print("수정실패");
+    // }
   }
 
 }
