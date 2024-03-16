@@ -49,17 +49,20 @@ class PostRepository {
     return cmmnResDto.code;
   }
 
-  Future<void> updateById (int? id, String title, String content) async{
+  Future<Post> updateById (int? id, String title, String content) async{
     UpdateReqDto updateReqDto = UpdateReqDto(title, content);
     Response response = await _postProvider.updateById(id, updateReqDto.toJson());
     dynamic body = response.body;
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
 
-    // if(cmmnResDto.code == "000") {
-    //   print("수정성공");
-    // } else {
-    //   print("수정실패");
-    // }
+    if(cmmnResDto.code == "000") {
+      print("수정성공");
+      Post post = Post.fromJson(cmmnResDto.data);
+      return post;
+    } else {
+      print("수정실패");
+      return Post();
+    }
   }
 
 }

@@ -35,9 +35,11 @@ class PostController extends GetxController{
   }
 
   Future<void> updateById(int? id, String title, String content) async{
-    await _postRepository.updateById(id, title, content);
-    findById(id);
-    findAll();
+    Post post = await _postRepository.updateById(id, title, content);
+    if(post.bbsSeq != null) {
+      this.post.value = post;
+      this.posts.value = this.posts.map((e) => e.bbsSeq == id ? post : e).toList();
+    }
   }
 
 }
