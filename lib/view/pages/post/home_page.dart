@@ -12,6 +12,7 @@ import '../user/user_info.dart';
 import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -25,21 +26,27 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Obx(() => Text("${u.isLogin}")), // isLogin의 값이 바뀔때마다 자동으로 갱신시켜줌
       ),
-      body: Obx(() => ListView.separated(
-        itemCount: p.posts.length,
-        itemBuilder: (context, index) { // index는 seq
-          return ListTile(
-            onTap: () async{
-              await p.findById(p.posts[index].bbsSeq);
-              Get.to(() => DetailPage(p.posts[index].bbsSeq), arguments: "arguments 속성 테스트");
-            },
-            title: Text("${p.posts[index].bbsTitle}"),
-            leading: Text("${p.posts[index].bbsSeq}"),
-          );
+      body: Obx(() => RefreshIndicator(
+        key: refreshKey,
+        onRefresh: () async{
+          await p.findAll();
         },
-        separatorBuilder: (context, index) {
-          return Divider();
-        },
+        child: ListView.separated(
+          itemCount: p.posts.length,
+          itemBuilder: (context, index) { // index는 seq
+            return ListTile(
+              onTap: () async{
+                await p.findById(p.posts[index].bbsSeq);
+                Get.to(() => DetailPage(p.posts[index].bbsSeq), arguments: "arguments 속성 테스트");
+              },
+              title: Text("${p.posts[index].bbsTitle}"),
+              leading: Text("${p.posts[index].bbsSeq}"),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+        ),
       )),
     );
   }
