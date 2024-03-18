@@ -76,7 +76,7 @@ class HomePage extends StatelessWidget {
               ),
               TextButton(
                   onPressed: (){
-                    Get.to(UserInfo());
+                    Get.to(() => UserInfo());
                   },
                   child: Text(
                     "회원 상세",
