@@ -13,6 +13,7 @@ import 'detail_page.dart';
 
 class HomePage extends StatelessWidget {
   var refreshKey = GlobalKey<RefreshIndicatorState>();
+  var scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,17 @@ class HomePage extends StatelessWidget {
     PostController p = Get.put(PostController());
 
     return Scaffold(
+      key: scaffoldKey,
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          if(scaffoldKey.currentState!.isDrawerOpen) {
+            scaffoldKey.currentState!.openEndDrawer();
+          } else {
+            scaffoldKey.currentState!.openDrawer();
+          }
+        },
+        child: Icon(Icons.code),
+      ),
       drawer: _navigation(context),
       appBar: AppBar(
         title: Obx(() => Text("${u.isLogin}")), // isLogin의 값이 바뀔때마다 자동으로 갱신시켜줌
@@ -76,6 +88,7 @@ class HomePage extends StatelessWidget {
               ),
               TextButton(
                   onPressed: (){
+                    scaffoldKey.currentState!.openEndDrawer();
                     Get.to(() => UserInfo());
                   },
                   child: Text(
