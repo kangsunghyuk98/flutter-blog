@@ -42,10 +42,13 @@ class PostController extends GetxController{
     }
   }
 
-  Future<void> save (String title, String content) async{
-    Post post = await _postRepository.save(title, content);
-    if(post.bbsSeq != null) {
-      this.posts.add(post);
+  Future<void> save (String title, String content, String? writer, int? writerCd) async{
+    String? result = await _postRepository.save(title, content, writer!, writerCd!);
+
+    if(result == "000"){
+      findAll();
+    } else {
+      print("글쓰기 실패");
     }
   }
 

@@ -46,7 +46,7 @@ class PostProvider extends GetConnect {
     final SharedPreferences preferences = await SharedPreferences.getInstance();
     String? token = preferences.getString("jwtToken");
 
-    return post("$host/post/", data ,headers: {
+    return post("$host/post", data ,headers: {
       "Authorization" : token ?? ""
     });
   }

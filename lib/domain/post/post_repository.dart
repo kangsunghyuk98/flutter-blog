@@ -50,7 +50,7 @@ class PostRepository {
   }
 
   Future<Post> updateById (int? id, String title, String content) async{
-    SaveOrUpdateRequestDto updateReqDto = SaveOrUpdateRequestDto(title, content);
+    SaveOrUpdateRequestDto updateReqDto = SaveOrUpdateRequestDto(title, content, null, null);
     Response response = await _postProvider.updateById(id, updateReqDto.toJson());
     dynamic body = response.body;
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
@@ -65,20 +65,13 @@ class PostRepository {
     }
   }
 
-  Future<Post> save (String title, String content) async{
-    SaveOrUpdateRequestDto saveOrUpdateRequestDto = SaveOrUpdateRequestDto(title, content);
+  Future<String?> save (String title, String content, String writer, int writerCd) async{
+    SaveOrUpdateRequestDto saveOrUpdateRequestDto = SaveOrUpdateRequestDto(title, content, writer, writerCd);
     Response response = await _postProvider.save(saveOrUpdateRequestDto.toJson());
     dynamic body = response.body;
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
 
-    if(cmmnResDto.code == "000") {
-      print("글쓰기 성공");
-      Post post = Post.fromJson(cmmnResDto.data);
-      return post;
-    } else {
-      print("글쓰기 실패");
-      return Post();
-    }
+    return cmmnResDto.code;
   }
 
 }
