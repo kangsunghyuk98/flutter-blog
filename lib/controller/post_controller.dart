@@ -42,4 +42,11 @@ class PostController extends GetxController{
     }
   }
 
+  Future<void> save (String title, String content) async{
+    Post post = await _postRepository.save(title, content);
+    if(post.bbsSeq != null) {
+      this.posts.add(post);
+    }
+  }
+
 }

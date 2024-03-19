@@ -1,6 +1,6 @@
 import 'package:flutter_01/controller/dto/CmmnResDto.dart';
 import 'package:flutter_01/controller/dto/LoginRequestDto.dart';
-import 'package:flutter_01/controller/dto/UpdateRequestDto.dart';
+import 'package:flutter_01/controller/dto/SaveOrUpdateRequestDto.dart';
 import 'package:flutter_01/domain/post/post.dart';
 import 'package:flutter_01/domain/post/post_provider.dart';
 import 'package:flutter_01/domain/user/user_provider.dart';
@@ -50,7 +50,7 @@ class PostRepository {
   }
 
   Future<Post> updateById (int? id, String title, String content) async{
-    UpdateReqDto updateReqDto = UpdateReqDto(title, content);
+    SaveOrUpdateRequestDto updateReqDto = SaveOrUpdateRequestDto(title, content);
     Response response = await _postProvider.updateById(id, updateReqDto.toJson());
     dynamic body = response.body;
     CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
@@ -61,6 +61,22 @@ class PostRepository {
       return post;
     } else {
       print("수정실패");
+      return Post();
+    }
+  }
+
+  Future<Post> save (String title, String content) async{
+    SaveOrUpdateRequestDto saveOrUpdateRequestDto = SaveOrUpdateRequestDto(title, content);
+    Response response = await _postProvider.save(saveOrUpdateRequestDto.toJson());
+    dynamic body = response.body;
+    CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
+
+    if(cmmnResDto.code == "000") {
+      print("글쓰기 성공");
+      Post post = Post.fromJson(cmmnResDto.data);
+      return post;
+    } else {
+      print("글쓰기 실패");
       return Post();
     }
   }

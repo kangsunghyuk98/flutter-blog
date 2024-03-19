@@ -10,6 +10,8 @@ import 'home_page.dart';
 class WritePage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
+  final _title = TextEditingController();
+  final _content = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,12 @@ class WritePage extends StatelessWidget {
           child: ListView(
           children: [
             CustomTextFormField(
+              controller: _title,
               hint: "Title",
               funValidator: validateTitle(),
             ),
             CustomTextarea(
+                controller: _content,
                 hint: "Content",
                 funValidator: validateContent(),
             ),
@@ -33,7 +37,7 @@ class WritePage extends StatelessWidget {
               text: "글쓰기",
               funPageRoute: () {
                 if(_formKey.currentState!.validate()) {
-                  Get.off(HomePage());
+                  Get.off(() => HomePage());
                 }
               },
             )
