@@ -10,6 +10,9 @@ import 'login_page.dart';
 class JoinPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
+  final _username = TextEditingController();
+  final _password = TextEditingController();
+  final _email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +42,17 @@ class JoinPage extends StatelessWidget {
       child: Column(
         children: [
           CustomTextFormField(
+            controller: _username,
             hint: "Username",
             funValidator: validateUsername(),
           ),
           CustomTextFormField(
+            controller: _password,
             hint: "Password",
             funValidator: validatePassword(),
           ),
           CustomTextFormField(
+            controller: _email,
             hint: "Email",
             funValidator: validateEmail(),
           ),
