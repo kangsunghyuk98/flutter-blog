@@ -30,12 +30,5 @@ class UserRepository {
     } else {
       return User();
     }
-
-    // if(headers["authorization"] == null) {
-    //   return "-1";
-    // } else {
-    //   String token = headers["authorization"];
-    //   return token;
-    // }
   }
 }
