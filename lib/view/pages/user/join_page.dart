@@ -63,20 +63,20 @@ class JoinPage extends StatelessWidget {
           ),
           CustomElevatedButton(
               text: "회원가입",
-              funPageRoute: () {
+              funPageRoute: () async{
                 if(_formKey.currentState!.validate()) {
-                  Get.to(LoginPage());
+                  String? result = await u.join(_username.text.trim(), _password.text.trim(), _email.text.trim());
+                  if(result == "000") {
+                    Get.to(() => LoginPage());
+                  } else {
+                    print("회원가입 실패하였습니다.");
+                  }
                 }
               }
           ),
           TextButton(
               onPressed: () async{
-                String? result = await u.join(_username.text.trim(), _password.text.trim(), _email.text.trim());
-                if(result == "000") {
-                  Get.to(LoginPage());
-                } else {
-                  print("회원가입 실패하였습니다.");
-                }
+                Get.to(() => LoginPage());
               },
               child: Text("로그인 페이지로 이동")
           ),
