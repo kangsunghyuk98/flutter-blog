@@ -1,4 +1,5 @@
 import 'package:flutter_01/controller/dto/CmmnResDto.dart';
+import 'package:flutter_01/controller/dto/JoinRequestDto.dart';
 import 'package:flutter_01/controller/dto/LoginRequestDto.dart';
 import 'package:flutter_01/domain/user/user.dart';
 import 'package:flutter_01/domain/user/user_provider.dart';
@@ -30,5 +31,15 @@ class UserRepository {
     } else {
       return User();
     }
+  }
+
+  Future<String?> join (String username, String password, String email) async{
+    JoinReqDto joinReqDto = JoinReqDto(username, password, email);
+    Response response = await _userProvider.join(joinReqDto.toJson());
+
+    dynamic body = response.body;
+    CmmnResDto cmmnResDto = CmmnResDto.fromJson(body);
+
+    return cmmnResDto.code;
   }
 }

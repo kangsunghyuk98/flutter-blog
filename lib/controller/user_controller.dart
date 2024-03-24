@@ -28,4 +28,9 @@ class UserController extends GetxController {
     preferences.setString("jwtToken", "");
     print("token >>>>>>>>>> ${preferences.getString("jwtToken")}");
   }
+
+  Future<String?> join (String username, String password, String email) async{
+    String? result = await _userRepository.join(username, password, email);
+    return result;
+  }
 }
