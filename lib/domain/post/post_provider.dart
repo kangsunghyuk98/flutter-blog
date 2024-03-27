@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-const host = "http://192.168.0.102:8080/api/v1/user";
+const host = "http://192.168.0.100:8080/api/v1/user";
 
 // 통신을 수행
 class PostProvider extends GetConnect {
