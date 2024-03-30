@@ -69,6 +69,7 @@ class JoinPage extends StatelessWidget {
                   if(result == "000") {
                     Get.to(() => LoginPage());
                   } else {
+                    Get.snackbar("Flutter App", "[서버 오류] 회원가입에 실패하였습니다.");
                     print("회원가입 실패하였습니다.");
                   }
                 }
